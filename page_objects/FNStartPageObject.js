@@ -18,10 +18,6 @@ class FlightNetworkStartPage {
     return this.page.locator(`[placeholder = '${name}']`);
   }
 
-  getCheckboxByName(name) {
-    return this.page.locator(`"text=${name}"`);
-  }
-
   getDropdownByLabelName(name) {
     return this.page.locator(`label[title='${name}'] .css-1hwfws3`);
   }
@@ -38,10 +34,6 @@ class FlightNetworkStartPage {
     return this.page
       .getByText(`${label}`, { exact: true })
       .locator("[data-testid='counter-adults-plus-button']");
-  }
-
-  getFiltersResetButtonByText(text) {
-    return;
   }
 }
 
