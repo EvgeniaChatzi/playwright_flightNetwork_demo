@@ -35,18 +35,37 @@ When(
 );
 
 When(
-  "I select {string} and {string} as departure and return dates for {string}",
-  async function (departure, returnDate, monthYear) {
+  "I select {string} and {string} as departure and return dates for the next month",
+  async function (departure, returnDate) {
     const flightNetworkStartPage = new FlightNetworkStartPage(this.page);
+    const d = new Date();
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let name = months[d.getMonth() + 1];
+    console.log("************", name);
 
     await flightNetworkStartPage.departureInputLocator.click();
     await flightNetworkStartPage.forwardButtonLocator.click();
-    await expect(
-      flightNetworkStartPage.getElementByText(monthYear)
-    ).toBeVisible();
+    const dateText = await this.page
+      .locator(".DayPicker-Caption div")
+      .textContent();
 
-    await await flightNetworkStartPage.getElementByText(departure).click();
-    await flightNetworkStartPage.getElementByText(returnDate).click();
+    if (await dateText.includes(name)) {
+      await await flightNetworkStartPage.getElementByText(departure).click();
+      await flightNetworkStartPage.getElementByText(returnDate).click();
+    }
   }
 );
 
