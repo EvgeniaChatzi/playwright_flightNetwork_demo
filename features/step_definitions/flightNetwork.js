@@ -22,7 +22,7 @@ When("I can see the logo of the site", async function () {
 });
 
 When(
-  "I select an item {string} from the dropdown with label {string}",
+  "I select {string} from the dropdown with label {string}",
   async function (item, name) {
     const flightNetworkStartPage = new FlightNetworkStartPage(this.page);
     const dropdownFieldByLabelName =
